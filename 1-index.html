@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="ar" dir="rtl"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>جدول المذاكرة | تانية بكالوريا - هندسة</title>
+<style>
+:root{--bg:#0d0b14;--card:#171322;--card2:#1f1a2e;--tx:#f1eefc;--mut:#9b94b5;--pri:#8b5cf6;--ok:#22c55e;--ar:#f59e0b;--en:#38bdf8;--hi:#f472b6;--pg:#34d399}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--tx);font-family:system-ui,"Segoe UI",Tahoma,sans-serif;line-height:1.6}
+header{padding:18px 16px 8px;max-width:760px;margin:auto}
+h1{font-size:20px;margin:0 0 4px}.sub{color:var(--mut);font-size:13px}
+.wrap{max-width:760px;margin:auto;padding:8px 16px 60px}
+.box{background:var(--card);border-radius:14px;padding:12px 14px;margin:10px 0}
+.row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+input[type=date]{background:var(--card2);color:var(--tx);border:1px solid #3a3352;border-radius:8px;padding:6px 8px;font-size:14px}
+button{background:var(--pri);color:#fff;border:0;border-radius:8px;padding:7px 12px;font-size:14px}
+.bar{height:8px;background:var(--card2);border-radius:6px;overflow:hidden;margin-top:6px}.bar i{display:block;height:100%;background:var(--ok);width:0}
+.wk{background:var(--card);border-radius:14px;margin:10px 0;overflow:hidden}
+.wk>summary{list-style:none;cursor:pointer;padding:12px 14px;display:flex;justify-content:space-between;gap:8px;align-items:center}
+.wk>summary::-webkit-details-marker{display:none}
+.wk .t{font-weight:700}.wk .d{color:var(--mut);font-size:12px}
+.tag{font-size:11px;border-radius:20px;padding:2px 9px;background:var(--card2);color:var(--mut)}
+.tag.rev{background:#3b1d4a;color:#f0abfc}.tag.mid{background:#1e3a5f;color:#93c5fd}.tag.now{background:#14532d;color:#86efac}
+.day{border-top:1px solid #2a2440;padding:10px 14px}
+.day h4{margin:0 0 6px;font-size:14px}.day h4 span{color:var(--mut);font-weight:400;font-size:12px}
+.it{display:flex;gap:9px;align-items:flex-start;padding:5px 0}
+.it input{margin-top:6px;width:18px;height:18px;accent-color:var(--ok)}
+.it label{flex:1;font-size:14px}.it.done label{opacity:.45;text-decoration:line-through}
+.s{display:inline-block;font-size:11px;border-radius:6px;padding:0 7px;margin-inline-end:6px;color:#111;font-weight:700}
+.s.ar{background:var(--ar)}.s.en{background:var(--en)}.s.hi{background:var(--hi)}.s.prog{background:var(--pg)}.s.x{background:#cbd5e1}
+.pg{color:var(--mut);font-size:12px}
+.note{color:var(--mut);font-size:12px}
+.warn{background:#3a2a0b;color:#fcd34d;border-radius:10px;padding:8px 10px;font-size:12px;margin-top:8px}
+.fri{color:var(--mut)}
+</style></head><body>
+<header><h1>جدول المذاكرة - تانية بكالوريا (هندسة وعلوم الحاسب)</h1>
+<div class="sub">المواد المضافة للمجموع: عربي، إنجليزي، تاريخ، برمجة وذكاء اصطناعي (كل مادة من 100)</div></header>
+<div class="wrap">
+<div class="box">
+<div class="row"><b>ميعاد الامتحان:</b><input type="date" id="exam"><button id="go">حدّث الجدول</button></div>
+<div class="note" style="margin-top:6px">الوزارة حددت شهر مايو للفرصة الأولى لكن مفيش يوم معلن ومصدر واحد قال يونيو. الافتراضي 15 مايو 2027 والجدول بيتعدل أول ما تغيّر التاريخ. آخر 4 أسابيع مراجعة.</div>
+<div class="bar"><i id="pb"></i></div><div class="note" id="pt"></div>
+</div>
+<div id="weeks"></div>
+<div class="warn">مش مضمّن: الثقافة المالية والتربية الدينية والتربية الرياضية (مش بتدخل المجموع، وماوصلتش لمنهجهم). الدروس من فهرس كتب الوزارة كما نقلته مواقع تعليمية، راجعها على الكتاب. تقسيم كتاب القصة (10 أعمال) على الترمين تقدير مني.</div>
+</div>
+<script>
+const S={ar:["عربي","ar"],en:["إنجليزي","en"],hi:["تاريخ","hi"],pg:["برمجة","prog"]};
+const T1=[],T2=[];
+function add(arr,k,list){list.forEach(x=>arr.push({k,t:x[0],p:x[1]||""}))}
+add(T1,"ar",[["الوحدة 1: العلم بين القانون والضمير + الأسماء الخمسة","ص8"],["الوحدة 1: الخلق جوهر الفضيلة + تابع الأسماء الخمسة","ص26"],["الوحدة 1: العلم نور (شعر) + تطبيق الأسماء الخمسة","ص41"],["الوحدة 2: التقنية وصناعة الرأي العام + الممنوع من الصرف","ص56"],["الوحدة 2: بين الذوق والعقل + تابع الممنوع من الصرف","ص73"],["الوحدة 2: أثر الكلمة وحفظ اللسان (شعر) + تطبيق","ص90"],["الوحدة 3: حقوق الإنسان بين العالمية والخصوصية + النعت والبدل","ص106"],["الوحدة 3: الحرية الفكرية + العطف","ص124"],["الوحدة 3: يا أخي الإنسان (شعر)","ص143"]]);
+add(T1,"en",[["Unit 1 Section A: Social Reflection","ص12"],["Unit 1 Section B: Shared Responsibility","ص12"],["Unit 2 Section A: Leisure in a Digital World","ص39"],["Unit 2 Section B: Lifelong Activity + Review A","ص39"],["Unit 3 Section A: Historical Landscape","ص74"],["Unit 3 Section B: Documenting History","ص74"],["Unit 4 Section A: Food Awareness","ص102"],["Unit 4 Section B: Online Consumption + Review B","ص102"],["Unit 5 Section A: Climate Change","ص140"],["Unit 5 Section B: Egypt's Green Change Makers","ص140"]]);
+add(T1,"hi",[["و1 د1: بناء الدولة المصرية واستمرارها","ص9"],["و1 د2: الدولة القديمة ومقاومة الاحتلال","ص21"],["و1 د3: التحولات الكبرى (العصر الوسيط)","ص31"],["و1 د4: التحولات الكبرى (العصر الحديث)","ص41"],["و2 د1: سياسات الاحتلال بمصر","ص55"],["و2 د2: صمود الشعب ومقاومة الاحتلال","ص64"],["و2 د3: ثورة 23 يوليو","ص73"],["و2 د4: الهوية الوطنية مقابل الاستعمار الجديد","ص83"],["و3 د1: التحرر ضد الاحتلال الفرنسي والإيطالي","ص95"],["و3 د2: التحرر ضد البريطاني والإسباني","ص105"],["و3 د3: مرتكزات الدور المصري","ص112"],["و3 د4: دور مصر في دعم التحرر","ص118"]]);
+add(T1,"pg",[["1-1 تطور تكنولوجيا المعلومات والتحول الاجتماعي","ص5"],["1-2 كيف يعمل الذكاء الاصطناعي","ص13"],["1-3 الذكاء الاصطناعي في الحياة والصناعة","ص19"],["1-4 القضايا الأخلاقية للذكاء الاصطناعي","ص25"],["2-1 التشفير والمصادقة","ص32"],["2-2 تصميم أمن الشبكات","ص39"],["2-3 الاستجابة للحوادث وإدارة المخاطر","ص45"],["3-1 البنية العامة لتطبيقات الويب","ص51"],["3-2 طرق الاتصال في تطبيقات الويب","ص57"],["3-3 أساسيات الواجهة الأمامية","ص63"],["4-1 أنواع الوسائط وخصائصها","ص69"],["4-2 تصميم المعلومات وتجربة المستخدم","ص75"],["4-3 أساليب تقييم المواقع","ص82"],["4-4 التحسين التكراري للمواقع","ص88"]]);
+add(T2,"ar",[["الوحدة 4: المرأة وبناء الدولة الحديثة","ص8"],["الوحدة 4: مصر الحقيقة والمرأة المصرية","ص30"],["الوحدة 4: أهواك يا وطني (شعر)","ص46"],["الوحدة 5: التفاوض إستراتيجية القيادة الواعية","ص64"],["الوحدة 5: القيادة أمانة وعدل","ص84"],["الوحدة 5: دعوة إلى السلام (شعر)","ص100"],["الوحدة 6: المثقف في العصر الرقمي","ص120"],["الوحدة 6: الثقافة أداة لا حلية","ص139"],["الوحدة 6: غربة وحنين (شعر)","ص157"]]);
+add(T2,"en",[["Unit 6 Section A: Global Responsibility","ص6"],["Unit 6 Section B: Speaking Up for Others + Review C","ص6"],["Unit 7 Section A: Where Passion Begins","ص40"],["Unit 7 Section B: What Passion Leaves Behind","ص40"],["Unit 8 Section A: Bridging Skills and Careers","ص66"],["Unit 8 Section B: Building Future Professionals + Review D","ص66"],["Unit 9 Section A: A Sense of Belonging","ص101"],["Unit 9 Section B: Inclusion and Community Action","ص101"],["Unit 10 Section A: What We Don't See","ص126"],["Unit 10 Section B: The Price We Don't Count + Review E","ص126"]]);
+add(T2,"hi",[["و4 د1: مقدمات الحرب العالمية الأولى","ص9"],["و4 د2: الحرب العالمية الأولى المعارك الكبرى","ص17"],["و4 د3: مقدمات الحرب العالمية الثانية","ص25"],["و4 د4: من الحرب العالمية الثانية إلى الحرب الباردة","ص32"],["و5 د1: القضية الفلسطينية حتى 1948","ص45"],["و5 د2: مصر والصراع العربي الإسرائيلي","ص54"],["و5 د3: حرب أكتوبر 1973","ص63"],["و5 د4: مصر والقضية بعد أكتوبر 1973","ص74"],["و6 د1: مفهوم السلام العالمي","ص86"],["و6 د2: تحديات السلام العالمي","ص93"],["و6 د3: المنظمات الدولية والإقليمية","ص100"],["و6 د4: دور مصر في السلام العالمي","ص105"]]);
+add(T2,"pg",[["5-1 طرق جمع البيانات","ص5"],["5-2 تنقية البيانات وتحويلها","ص12"],["5-3 البيانات المفتوحة وواجهات API","ص20"],["6-1 الاستدلال الإحصائي","ص27"],["6-2 تحليل الانحدار وتقييمه","ص35"],["6-3 تمثيل البيانات المرئي والتواصل","ص43"],["7-1 أساسيات التعلم الآلي","ص51"],["7-2 الشبكات العصبية والتعلم العميق","ص60"],["7-3 نماذج اللغة الكبيرة والذكاء التوليدي","ص68"]]);
+const stories=["حكاية الغريب","عودة الروح","كفاح طيبة","الأرض","شمس وليل","العبرات","وا إسلاماه","عبقرية عمر","رجل تحت الصفر","صح النوم"];
+stories.forEach((s,i)=>(i<5?T1:T2).push({k:"x",t:"قصة: "+s,p:"كتاب القصة"}));
+function mix(arr){ // round robin proportional
+ const g={};arr.forEach(x=>(g[x.k]=g[x.k]||[]).push(x));
+ const ks=Object.keys(g),out=[];const tot=arr.length;
+ const pos={};ks.forEach(k=>pos[k]=0);
+ for(let i=0;i<tot;i++){let best=null,bv=1e9;ks.forEach(k=>{if(pos[k]<g[k].length){const v=(pos[k]+.5)/g[k].length;if(v<bv){bv=v;best=k}}});out.push(g[best][pos[best]++])}
+ return out}
+const DN=["السبت","الأحد","الاثنين","الثلاثاء","الأربعاء","الخميس","الجمعة"];
+const MO=["يناير","فبراير","مارس","أبريل","مايو","يونيو","يوليو","أغسطس","سبتمبر","أكتوبر","نوفمبر","ديسمبر"];
+const fmt=d=>d.getDate()+" "+MO[d.getMonth()];
+const D=(y,m,d)=>new Date(Date.UTC(y,m-1,d,12));
+const add_=(d,n)=>new Date(d.getTime()+n*864e5);
+function build(exam){
+ const start=D(2026,11,28),t1End=D(2027,1,21),t2Start=D(2027,2,6);
+ const revStart=add_(exam,-28);
+ const days=[];// {date,kind,items}
+ for(let d=start;d<=exam;d=add_(d,1))days.push({date:d,items:[],kind:""});
+ const q1=mix(T1),q2=mix(T2);
+ // term1 study days Sat-Thu until t1End
+ const t1d=days.filter(x=>x.date<=t1End&&dow(x.date)!=6);
+ fill(t1d,q1,"new");
+ // gap: Jan 22 - Feb 5 consolidation of term 1
+ const gap=days.filter(x=>x.date>t1End&&x.date<t2Start);
+ const t1sub=["ar","en","hi","pg"];let gi=0;
+ gap.forEach(x=>{x.kind="gap";if(dow(x.date)==6){x.items=[{k:"x",t:"راحة + سجّل اللي لسه ماخلصتهوش",p:""}];return}
+  const k=t1sub[gi++%4];x.items=[{k,t:"مراجعة شاملة ترم أول: "+S[k][0],p:""},{k:"x",t:"حل أسئلة نهاية الوحدات للمادة",p:""}]});
+ const t2d=days.filter(x=>x.date>=t2Start&&x.date<revStart&&dow(x.date)!=6);
+ fill(t2d,q2,"new");
+ // revision
+ const rd=days.filter(x=>x.date>=revStart);
+ const rs=["ar","en","hi","pg"];let ri=0;
+ rd.forEach(x=>{x.kind="rev";const last=add_(exam,-3)<=x.date;if(dow(x.date)==6){x.items=[{k:"x",t:"راحة خفيفة + نوم كفاية",p:""}];return}
+  if(x.date.getTime()==exam.getTime()){x.items=[{k:"x",t:"يوم الامتحان الأول: راجع ملخصاتك بس وارتاح",p:""}];return}
+  const k=rs[ri++%4],k2=rs[ri%4];x.items=last?[{k,t:"مراجعة سريعة: "+S[k][0]+" (الملخصات فقط)",p:""}]:[{k,t:"مراجعة نهائية: "+S[k][0]+" كل المنهج",p:""},{k:k2,t:"امتحان تجريبي/أسئلة: "+S[k2][0],p:""}]});
+ return days}
+function dow(d){return (d.getUTCDay()+1)%7} // 0=Sat..6=Fri
+function fill(ds,q,kind){
+ ds.forEach(x=>{x.kind=kind;x.items=[]});
+ q.forEach((it,i)=>ds[Math.floor(i*ds.length/q.length)].items.push(it));
+ ds.forEach(x=>{if(!x.items.length)x.items=[{k:"x",t:"يوم مراجعة: راجع آخر درسين واحل أسئلة عليهم",p:""}]});
+}
+function render(){
+ const exam=new Date(document.getElementById("exam").value+"T12:00:00Z");
+ const days=build(exam);
+ // add Fridays
+ days.forEach(x=>{if(dow(x.date)==6&&!x.items.length){x.kind=x.kind||"fri";x.items=[{k:"x",t:"مراجعة أسبوعية: اللي ذاكرته الأسبوع ده + المتأخر",p:"يوم خفيف"}]}});
+ const st=JSON.parse(localStorage.getItem("bacdone")||"{}");
+ let html="",total=0,done=0,wi=0,today=new Date();today=D(today.getFullYear(),today.getMonth()+1,today.getDate());
+ for(let i=0;i<days.length;i+=7){
+  const wk=days.slice(i,i+7);wi++;const f=wk[0].date,l=wk[wk.length-1].date;
+  const kind=wk.some(x=>x.kind=="rev")?"rev":wk.some(x=>x.kind=="gap")?"mid":"";
+  const lab=kind=="rev"?"مراجعة نهائية":kind=="mid"?"مراجعة منتصف السنة":"أسبوع دراسة";
+  const isNow=today>=f&&today<=add_(l,1);
+  let body="",wd=0,wt=0;
+  wk.forEach(x=>{let its="";x.items.forEach((it,j)=>{const id=fmt(x.date)+"|"+j+"|"+it.t;total++;wt++;const c=st[id];if(c){done++;wd++}
+   its+=`<div class="it ${c?"done":""}"><input type="checkbox" data-id="${id.replace(/"/g,"&quot;")}" ${c?"checked":""}><label><span class="s ${it.k=="x"?"x":S[it.k][1]}">${it.k=="x"?"عام":S[it.k][0]}</span>${it.t} <span class="pg">${it.p}</span></label></div>`});
+   body+=`<div class="day"><h4 class="${dow(x.date)==6?"fri":""}">${DN[dow(x.date)]} <span>${fmt(x.date)}</span></h4>${its}</div>`});
+  html+=`<details class="wk" ${isNow?"open":""}><summary><div><div class="t">الأسبوع ${wi}</div><div class="d">${fmt(f)} - ${fmt(l)} · ${wd}/${wt}</div></div><div>${isNow?'<span class="tag now">الأسبوع ده</span> ':""}<span class="tag ${kind}">${lab}</span></div></summary>${body}</details>`}
+ document.getElementById("weeks").innerHTML=html;
+ document.getElementById("pb").style.width=(total?done/total*100:0)+"%";
+ document.getElementById("pt").textContent=`خلّصت ${done} من ${total} مهمة · ${wi} أسبوع لحد الامتحان`;
+ document.querySelectorAll(".it input").forEach(c=>c.onchange=()=>{const s=JSON.parse(localStorage.getItem("bacdone")||"{}");if(c.checked)s[c.dataset.id]=1;else delete s[c.dataset.id];localStorage.setItem("bacdone",JSON.stringify(s));render()})}
+const ex=document.getElementById("exam");ex.value=localStorage.getItem("bacexam")||"2027-05-15";
+document.getElementById("go").onclick=()=>{localStorage.setItem("bacexam",ex.value);render()};
+render();
+</script></body></html>
