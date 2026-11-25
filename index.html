@@ -40,7 +40,7 @@ button:active{transform:scale(.95)}button.g{background:var(--pri2);color:#c4a1ff
 .day{border-top:1px solid var(--bd);padding:10px 14px}.day.today{background:rgba(139,61,255,.1);box-shadow:inset 3px 0 0 var(--pri)}
 .day h4{margin:0 0 4px;font-size:14px}.day h4 span{color:var(--mut);font-weight:400;font-size:12px}.fri{color:var(--mut)}
 .it{display:flex;gap:9px;align-items:flex-start;padding:5px 0}.it input{margin-top:6px;width:19px;height:19px;accent-color:#8B3DFF}
-.it label{flex:1;font-size:14px}.it.done label{opacity:.4;text-decoration:line-through}.it.late label{color:#fca5a5}
+.it label{flex:1;font-size:14px}.it.done label{opacity:.4;text-decoration:line-through}.it.late label{color:inherit}
 .s{display:inline-block;font-size:11px;border-radius:6px;padding:0 7px;margin-inline-end:6px;color:#fff;font-weight:700}
 .s.ar{background:#b45309}.s.en{background:#0369a1}.s.hi{background:#be185d}.s.prog{background:#047857}.s.x{background:#475569}
 .pgn{color:var(--mut);font-size:12px}.note{color:var(--mut);font-size:12px}
@@ -55,13 +55,13 @@ body{padding-bottom:78px}
 .nav button{background:none;box-shadow:none;color:var(--mut);padding:6px 8px;font-size:11px;display:flex;flex-direction:column;align-items:center;gap:2px;border-radius:12px;min-width:56px}
 .nav button svg{width:21px;height:21px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 .nav button.on{color:#c4a1ff;background:var(--pri2)}
-.badge{position:absolute;margin-top:-4px;background:#ef4444;color:#fff;border-radius:10px;font-size:10px;padding:0 5px}
+.badge{position:absolute;margin-top:-4px;background:#8B3DFF;color:#fff;border-radius:10px;font-size:10px;padding:0 5px}
 .auth{position:fixed;inset:0;background:var(--bg);z-index:50;overflow:auto;display:none}
 .auth.on{display:block}.auth .box{max-width:420px;margin:0 auto;padding:30px 18px}
 .auth input[type=text],.auth input[type=password],.auth input[type=date]{width:100%;margin:6px 0;border:1px solid var(--bd);border-radius:12px;padding:12px;background:#0a0b18;color:var(--tx);font-size:15px;font-family:inherit}
 .seg{display:flex;gap:6px;margin:10px 0}.seg button{flex:1;background:var(--card2);box-shadow:none;color:var(--mut)}.seg button.on{background:linear-gradient(135deg,#8B3DFF,#6d28d9);color:#fff}
 .days7{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:10px 0}.days7 button{background:var(--card2);box-shadow:none;color:var(--tx)}.days7 button.on{background:linear-gradient(135deg,#8B3DFF,#6d28d9)}
-.err{color:#fca5a5;font-size:13px;min-height:18px}
+.err{color:#c4a1ff;font-size:13px;min-height:18px}
 .chips{display:flex;gap:6px;overflow:auto;padding:2px 0 8px}.chips button{white-space:nowrap;background:var(--card2);box-shadow:none;color:var(--mut);padding:6px 12px;font-size:13px}.chips button.on{background:var(--pri2);color:#c4a1ff}
 .sub-bar{display:flex;align-items:center;gap:8px;margin:7px 0;font-size:13px}.sub-bar .nm{width:92px;flex:none}.sub-bar .b{flex:1;height:9px;background:#1a1b36;border-radius:6px;overflow:hidden}.sub-bar .b i{display:block;height:100%}.sub-bar .v{width:54px;text-align:left;color:var(--mut);font-size:12px}
 .chart{display:flex;align-items:flex-end;gap:3px;height:90px;margin-top:8px}.chart i{flex:1;background:linear-gradient(180deg,#a78bfa,#6d28d9);border-radius:4px 4px 0 0;min-height:2px}.chart i.cur{background:linear-gradient(180deg,#34d399,#059669)}
@@ -76,7 +76,7 @@ body{padding-bottom:78px}
 
 .rate{position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:60;display:none;align-items:center;justify-content:center;padding:18px}.rate.on{display:flex}.rate .bx{background:var(--card);border:1px solid var(--bd);border-radius:22px;padding:20px;max-width:380px;width:100%;text-align:center}.rate .bx button{margin:4px;padding:11px 14px}
 .set{position:fixed;inset:0;background:var(--bg);z-index:55;overflow:auto;display:none;padding:18px}.set.on{display:block}.set .in{max-width:520px;margin:0 auto}.set input{width:100%;margin:6px 0;border:1px solid var(--bd);border-radius:12px;padding:12px;background:#0a0b18;color:var(--tx);font-family:inherit}
-.view{display:none;max-width:760px;margin:0 auto;padding:6px 14px 100px}.view.on{display:block}.rg{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}.rg button{padding:10px 2px;font-size:13px}.rg button.w{background:#7f1d1d}
+.view{display:none;max-width:760px;margin:0 auto;padding:6px 14px 100px}.view.on{display:block}.rg{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}.rg button{padding:10px 2px;font-size:13px}.rg button.w{background:#3b2a6b}
 </style></head><body>
 <div class="auth" id="auth"><div class="box"><div id="authbox"><h1 style="text-align:center">خطة الثانوية العامة</h1><p class="note" style="text-align:center">حساب محلي على جهازك. بياناتك محفوظة في المتصفح بس.</p><div class="chips" id="authseg"><button data-m="login" class="on">دخول</button><button data-m="signup">حساب جديد</button></div><input type="text" id="un" placeholder="اسم المستخدم" autocomplete="username"><input type="password" id="pw" placeholder="كلمة السر" autocomplete="current-password"><div id="err" style="color:#f87171;min-height:22px"></div><button id="authgo" style="width:100%">دخول</button></div>
 <div id="onb" style="display:none"><h2>أهلاً! اضبط خطتك</h2><b>يوم الراحة بتاعك إيه؟</b><div class="chips" id="days7" style="flex-wrap:wrap"></div><b>اليوم ده يبقى إيه؟</b><div class="chips" id="omode"></div><b>ميعاد أول امتحان (تقدر تغيره)</b><input type="date" id="exd"><p class="note">الوزارة لسه معلنتش اليوم بالظبط (مايو). الافتراضي 15 مايو 2027.</p><button id="onbgo" style="width:100%">ابدأ الخطة</button></div></div></div>
@@ -88,9 +88,9 @@ body{padding-bottom:78px}
 <div class="view" id="v-stats"><div id="stl"></div></div>
 <div class="view" id="v-cards"><div id="cl"></div></div>
 <div class="view" id="v-az"><div id="azt"></div><div id="azl"></div><div id="azs"></div></div>
-<div class="rate" id="rate"><div class="bx"><div class="note">خلّصت:</div><h3 id="rt"></h3><b>كان صعب ولا سهل؟</b><div><button data-lv="hard" class="w" style="background:#7f1d1d">صعب</button><button data-lv="mid">متوسط</button><button data-lv="easy" class="g">سهل</button></div><button class="g" data-lv="skip">تخطي</button></div></div>
+<div class="rate" id="rate"><div class="bx"><div class="note">خلّصت:</div><h3 id="rt"></h3><b>كان صعب ولا سهل؟</b><div><button data-lv="hard" class="w" style="background:#3b2a6b">صعب</button><button data-lv="mid">متوسط</button><button data-lv="easy" class="g">سهل</button></div><button class="g" data-lv="skip">تخطي</button></div></div>
 <div class="set" id="set"><div class="in"><h2>الإعدادات</h2><b>ميعاد الامتحان</b><input type="date" id="sex"><button id="sexg">حفظ</button><p><b>يوم الراحة</b></p><div class="chips" id="sdays" style="flex-wrap:wrap"></div><b>يوم الراحة يبقى</b><div class="chips" id="somode"></div><button class="g" id="sclose" style="width:100%">إغلاق</button></div></div>
-<nav class="nav"><button data-v="home" class="on"><svg viewBox="0 0 24 24"><path d="M3 11l9-8 9 8v10H3z"/></svg>الرئيسية</button><button data-v="sched"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>الجدول</button><button data-v="back"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>متراكم <span id="bdg" style="display:none;background:#ef4444;color:#fff;border-radius:9px;padding:0 6px;font-size:10px"></span></button><button data-v="cards"><svg viewBox="0 0 24 24"><rect x="3" y="6" width="14" height="14" rx="2"/><path d="M7 3h14v14"/></svg>كروت</button><button data-v="stats"><svg viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-8M22 20H2"/></svg>إحصاء</button><button data-v="az"><svg viewBox="0 0 24 24"><path d="M12 3a6 6 0 016 6c0 4-6 12-6 12S6 13 6 9a6 6 0 016-6z"/></svg>أذكار</button></nav>
+<nav class="nav"><button data-v="home" class="on"><svg viewBox="0 0 24 24"><path d="M3 11l9-8 9 8v10H3z"/></svg>الرئيسية</button><button data-v="sched"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>الجدول</button><button data-v="back"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>متراكم <span id="bdg" style="display:none;background:#8B3DFF;color:#fff;border-radius:9px;padding:0 6px;font-size:10px"></span></button><button data-v="cards"><svg viewBox="0 0 24 24"><rect x="3" y="6" width="14" height="14" rx="2"/><path d="M7 3h14v14"/></svg>كروت</button><button data-v="stats"><svg viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-8M22 20H2"/></svg>إحصاء</button><button data-v="az"><svg viewBox="0 0 24 24"><path d="M12 3a6 6 0 016 6c0 4-6 12-6 12S6 13 6 9a6 6 0 016-6z"/></svg>أذكار</button></nav>
 <script>
 const S={ar:["عربي","ar"],en:["إنجليزي","en"],hi:["تاريخ","hi"],pg:["برمجة","prog"]};
 const T1=[],T2=[];
@@ -263,7 +263,7 @@ function rStats(){const {per,total,done}=ST;
  $("stl").innerHTML=`<div class="card tilt"><div class="grid"><div class="st"><b>${ST.sk}</b><span>🔥 أيام متتالية</span></div><div class="st"><b>${ST.best}</b><span>أفضل ستريك</span></div><div class="st"><b>${Math.round(done/Math.max(1,total)*100)}%</b><span>إنجاز كلي</span></div></div></div>
  <div class="card"><h3>حسب المادة</h3>${rows}</div>
  <div class="card"><h3>الإنجاز لكل أسبوع</h3><div class="chart">${wc.map(w=>`<i class="${w.cur?"cur":""}" style="height:${Math.max(3,w.c/mx*100)}%" title="${w.c}"></i>`).join("")}</div><div class="note">كل عمود أسبوع من أول الخطة (الأخضر = الأسبوع الحالي)</div></div>
- <div class="card"><h3>إنت ماشي إزاي؟</h3><div>المفروض تكون خلّصت لحد النهاردة: <b>${exp}</b> مهمة. إنت خلّصت <b>${done}</b>.</div><div class="${diff>=0?"":"err"}" style="margin-top:6px;color:${diff>=0?"#6ee7b7":"#fca5a5"}">${diff>=0?`متقدم بـ ${diff} مهمة 👏`:`متأخر بـ ${-diff} مهمة`}</div>
+ <div class="card"><h3>إنت ماشي إزاي؟</h3><div>المفروض تكون خلّصت لحد النهاردة: <b>${exp}</b> مهمة. إنت خلّصت <b>${done}</b>.</div><div class="${diff>=0?"":"err"}" style="margin-top:6px;color:${diff>=0?"#6ee7b7":"#9a98b8"}">${diff>=0?`متقدم بـ ${diff} مهمة 👏`:`متأخر بـ ${-diff} مهمة`}</div>
  <div class="note" style="margin-top:8px">تركيز بومودورو الكلي: ${foc} دقيقة · أيام أكملت فيها الأذكار: ${azd}</div></div>`}
 /* adhkar */
 const AZ={
