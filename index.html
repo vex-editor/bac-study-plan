@@ -126,6 +126,8 @@ function todayD(){const t=new Date();return D(t.getFullYear(),t.getMonth()+1,t.g
 function dow(d){return (d.getUTCDay()+1)%7} // 0=Sat..6=Fri
 const T1END=D(2027,1,21),T2START=D(2027,2,6),PLAN0=D(2026,9,12);
 const SUBJ={ar:["عربي","#d97706"],en:["إنجليزي","#0284c7"],hi:["تاريخ","#db2777"],pg:["برمجة","#059669"],x:["قصة","#64748b"]};
+const MEX=[{n:"أكتوبر",s:D(2026,10,17),e:D(2026,10,22),sc:"من أول الأسبوع 1 لنهاية الأسبوع 5"},{n:"نوفمبر",s:D(2026,11,28),e:D(2026,12,3),sc:"لحد نهاية الأسبوع 11"}];
+const CP=[{end:D(2026,10,16),n:{ar:3,en:2,hi:4,pg:4}},{end:D(2026,11,27),n:{ar:6,en:8,hi:5,pg:7}},{end:T1END,n:{ar:9,en:10,hi:12,pg:14}}];
 let U=null; // current user data
 /* ---------- auth (local, per device) ---------- */
 const enc=new TextEncoder();
@@ -159,17 +161,26 @@ function logout(){saveU();localStorage.removeItem("bac_session");U=null;$("auth"
 function build(){
  const exam=pd(U.exam),start=PLAN0,off=U.dayoff;
  const days=[];for(let d=start;d<=exam;d=add_(d,1))days.push({date:d,items:[],kind:"",off:dow(d)==off});
+ days.forEach(x=>{const m=MEX.findIndex(z=>x.date>=z.s&&x.date<=add_(z.s,6));if(m>=0){x.mex=m;x.kind="mexam"}});
  const revStart=add_(exam,-28);
  const q1=mix(T1.map((x,i)=>({...x,core:1}))),q2=mix(T2.map(x=>({...x,core:1})));
- const t1d=days.filter(x=>!x.off&&x.date<=T1END),gap=days.filter(x=>x.date>T1END&&x.date<T2START),t2d=days.filter(x=>!x.off&&x.date>=T2START&&x.date<revStart);
+ const t1d=days.filter(x=>!x.off&&!x.mex&&x.date<=T1END),gap=days.filter(x=>x.date>T1END&&x.date<T2START),t2d=days.filter(x=>!x.off&&x.date>=T2START&&x.date<revStart);
  let Q2=q2;if(!t1d.length){Q2=q1.concat(q2)}
  const place=(ds,q,kind)=>{ds.forEach(x=>{x.kind=kind});if(!ds.length)return;q.forEach((it,i)=>ds[Math.floor(i*ds.length/q.length)].items.push(it));ds.forEach(x=>{if(!x.items.length)x.items=[{k:"x",t:"يوم مراجعة: راجع آخر درسين واحل أسئلة عليهم",p:"",auto:1}]})};
- if(t1d.length)place(t1d,q1,"new");place(t2d,Q2,"new");
+ const ks0=["ar","en","hi","pg"];let prevEnd=add_(PLAN0,-1);
+ CP.forEach((cp,si)=>{const sd=t1d.filter(x=>x.date>prevEnd&&x.date<=cp.end);sd.forEach(x=>x.kind="new");const prevN=si?CP[si-1].n:{ar:0,en:0,hi:0,pg:0};
+  ks0.forEach((k,ki)=>{const L=q1.filter(x=>x.k==k).slice(prevN[k],cp.n[k]);if(!sd.length)return;L.forEach((it,j)=>{const idx=Math.min(sd.length-1,Math.floor((j+ki*.25)*sd.length/L.length));sd[idx].items.push(it)})});prevEnd=cp.end});
+ t1d.forEach(x=>{if(!x.items.length)x.items=[{k:"x",t:"يوم مراجعة: راجع آخر درسين واحل أسئلة عليهم",p:"",auto:1}]});
+ const rv=["ar","en","hi","pg"],ex=["عربي","إنجليزي","تاريخ","البرمجة (التخصصي)"];
+ days.filter(x=>x.mex!=null&&!x.off).forEach(x=>{const w=dow(x.date),M=MEX[x.mex].n;const it=[];
+  const rev=k=>({k,t:"مراجعة شهر "+M+": "+SUBJ[k][0]+" (كل اللي اتذاكر قبل الامتحان)",p:"",auto:1});
+  if(w==0)it.push(rev("ar"),rev("en"));else if(w==1){it.push({k:"ar",t:"امتحان شهر "+M+": عربي (على الأغلب)",p:"",auto:1},rev("en"))}else if(w==2){it.push({k:"en",t:"امتحان شهر "+M+": إنجليزي (على الأغلب)",p:"",auto:1},rev("hi"))}else if(w==3){it.push({k:"hi",t:"امتحان شهر "+M+": تاريخ (على الأغلب)",p:"",auto:1},rev("pg"))}else if(w==4){it.push({k:"pg",t:"امتحان شهر "+M+": المادة التخصصية (على الأغلب)",p:"",auto:1},{k:"x",t:"مراجعة سريعة لنقط الضعف من كل المواد",p:"",auto:1})}else if(w==5)it.push({k:"x",t:"استراحة وملخصات خفيفة بعد الامتحانات",p:"",auto:1});x.items=it});
+ place(t2d,Q2,"new");
  let gi=0;const ks=["ar","en","hi","pg"];
  gap.forEach(x=>{x.kind="gap";if(x.off)return;const k=ks[gi++%4];x.items=[{k,t:"مراجعة شاملة ترم أول: "+SUBJ[k][0],p:"",auto:1},{k:"x",t:"حل أسئلة نهاية الوحدات للمادة",p:"",auto:1}]});
  let ri=0;days.filter(x=>x.date>=revStart).forEach(x=>{x.kind="rev";if(x.off)return;if(x.date.getTime()==exam.getTime()){x.items=[{k:"x",t:"يوم الامتحان الأول: راجع ملخصاتك بس وارتاح",p:"",auto:1}];return}
   const last=add_(exam,-3)<=x.date,k=ks[ri++%4],k2=ks[ri%4];x.items=last?[{k,t:"مراجعة سريعة: "+SUBJ[k][0]+" (الملخصات فقط)",p:"",auto:1}]:[{k,t:"مراجعة نهائية: "+SUBJ[k][0]+" كل المنهج",p:"",auto:1},{k:k2,t:"امتحان تجريبي/أسئلة: "+SUBJ[k2][0],p:"",auto:1}]});
- const om=U.offmode||"empty";if(om!="empty")days.forEach((x,i)=>{if(!x.off||x.date.getTime()==exam.getTime())return;x.off=false;x.isoff=true;x.items=om=="one"?[{k:"x",t:"مهمة خفيفة ليوم الراحة: راجع صفحة واحدة من أي مادة",p:"",auto:1}]:[{k:ks[i%4],t:"يوم مراجعة هادي: "+SUBJ[ks[i%4]][0]+" (من غير دروس جديدة)",p:"",auto:1}]});
+ const om=U.offmode||"empty";if(om!="empty")days.forEach((x,i)=>{if(!x.off||x.mex!=null||x.date.getTime()==exam.getTime())return;x.off=false;x.isoff=true;x.items=om=="one"?[{k:"x",t:"مهمة خفيفة ليوم الراحة: راجع صفحة واحدة من أي مادة",p:"",auto:1}]:[{k:ks[i%4],t:"يوم مراجعة هادي: "+SUBJ[ks[i%4]][0]+" (من غير دروس جديدة)",p:"",auto:1}]});
  const by={};days.forEach(x=>{by[iso(x.date)]=x;x.items.forEach((it,j)=>{it.id=(it.auto?iso(x.date)+"|":"")+it.k+"|"+it.t;it.orig=iso(x.date)})});
  Object.entries(U.moves).forEach(([id,to])=>{const t=by[to];if(!t)return;for(const x of days){const i=x.items.findIndex(z=>z.id==id);if(i>=0){if(x===t)return;const it=x.items.splice(i,1)[0];it.moved=1;t.items.push(it);return}}});
  return {days,by,revStart,exam,start}}
@@ -212,8 +223,9 @@ function rHome(){
  const f=U.focus[tdi]||0;$("tf").textContent="تركيز النهاردة: "+f+" دقيقة"}
 /* schedule */
 function rSched(){let html="";const {td,tdi}=ST;
+ html+=`<div class="card"><h3>الامتحانات الشهرية</h3>${MEX.map((m,i)=>{const past=td>m.e;const c=CP[i].n;return `<div class="todo"><div style="flex:1"><b>شهر ${m.n}</b> · ${fmt(m.s>m.e?m.e:add_(m.s,1))} إلى ${fmt(m.e)}${past?" (عدّى)":" · فاضل "+Math.max(0,Math.round((add_(m.s,1)-td)/864e5))+" يوم"}<div class="pgn">بيغطي ${m.sc}. المفروض تكون خلّصت لحد دلوقتي: عربي ${c.ar}، إنجليزي ${c.en}، تاريخ ${c.hi}، برمجة ${c.pg} درس. الأسبوع بتاعه (${fmt(m.s)}) فاضي من الجديد ومخصص للمراجعة.</div></div></div>`}).join("")}<div class="note">المواعيد دي من جدول مديرية القاهرة (مقترح) وبتختلف شوية بين المحافظات. أكتوبر 18-22 اتأكد، نوفمبر 29 نوفمبر لـ3 ديسمبر. مفيش مواعيد امتحانات شهرية للترم التاني اتعلنت لسه.</div></div>`;
  for(let i=0;i<P.days.length;i+=7){const wk=P.days.slice(i,i+7),f=wk[0].date,l=wk[wk.length-1].date,n=i/7+1;
-  const kind=wk.some(x=>x.kind=="rev")?"rev":wk.some(x=>x.kind=="gap")?"mid":"";const lab=kind=="rev"?"مراجعة نهائية":kind=="mid"?"مراجعة منتصف السنة":"أسبوع دراسة";
+  const kind=wk.some(x=>x.kind=="rev")?"rev":wk.some(x=>x.kind=="mexam")?"mid":wk.some(x=>x.kind=="gap")?"mid":"";const lab=kind=="rev"?"مراجعة نهائية":wk.some(x=>x.kind=="mexam")?"امتحان شهر + مراجعة":kind=="mid"?"مراجعة منتصف السنة":"أسبوع دراسة";
   const isNow=td>=f&&td<=add_(l,1);let body="",wd=0,wt=0;
   wk.forEach(x=>{let its="";x.items.forEach(it=>{wt++;if(U.done[it.id])wd++;its+=itemRow(it,x)});if(x.off)its='<div class="note">يوم راحة</div>';
    body+=`<div class="day ${iso(x.date)==tdi?"today":""}"><h4 class="${x.off?"fri":""}">${DN[dow(x.date)]} <span>${fmt(x.date)}${iso(x.date)==tdi?" · النهاردة":""}</span></h4>${its}</div>`});
