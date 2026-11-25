@@ -1,46 +1,67 @@
 <!doctype html>
-<html lang="ar" dir="rtl"><head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>جدول المذاكرة | تانية بكالوريا - هندسة</title>
+<html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>جدولي الدراسي | تانية بكالوريا - هندسة</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;700&family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#0d0b14;--card:#171322;--card2:#1f1a2e;--tx:#f1eefc;--mut:#9b94b5;--pri:#8b5cf6;--ok:#22c55e;--ar:#f59e0b;--en:#38bdf8;--hi:#f472b6;--pg:#34d399}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--tx);font-family:system-ui,"Segoe UI",Tahoma,sans-serif;line-height:1.6}
-header{padding:18px 16px 8px;max-width:760px;margin:auto}
-h1{font-size:20px;margin:0 0 4px}.sub{color:var(--mut);font-size:13px}
-.wrap{max-width:760px;margin:auto;padding:8px 16px 60px}
-.box{background:var(--card);border-radius:14px;padding:12px 14px;margin:10px 0}
+:root{--bg:#06070F;--card:#0e0f1f;--card2:#15162b;--tx:#f3f1ff;--mut:#9a98b8;--pri:#8B3DFF;--pri2:rgba(139,61,255,.16);--ok:#34d399;--bd:#23244a}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{margin:0;background:radial-gradient(1200px 600px at 80% -10%,#1b0f3d 0,transparent 60%),radial-gradient(900px 500px at -10% 30%,#10133a 0,transparent 55%),var(--bg);color:var(--tx);font-family:"IBM Plex Sans Arabic","Tajawal",system-ui,"Segoe UI",Tahoma,sans-serif;line-height:1.65;min-height:100vh}
+.top{display:flex;align-items:center;gap:10px;padding:14px 16px;max-width:760px;margin:auto}
+.logo{width:38px;height:38px;border-radius:12px;background:linear-gradient(135deg,#8B3DFF,#5b21b6);color:#fff;display:grid;place-items:center;font-weight:700;box-shadow:0 0 20px rgba(139,61,255,.55)}
+.top b{font-size:17px}.top small{display:block;color:var(--mut);font-size:12px}
+.wrap{max-width:760px;margin:auto;padding:0 16px 80px}
+.stage{height:250px;perspective:900px;display:grid;place-items:center;touch-action:pan-y;cursor:grab;position:relative;margin-top:4px}
+.scene{width:160px;height:160px;position:relative;transform-style:preserve-3d;transform:rotateX(-18deg) rotateY(0deg)}
+.ring{position:absolute;inset:0;border-radius:50%;border:2px solid var(--pri);box-shadow:0 0 18px rgba(139,61,255,.7),inset 0 0 18px rgba(139,61,255,.4);transform-style:preserve-3d}
+.r1{transform:rotateX(75deg) scale(1.55);animation:sp1 9s linear infinite}
+.r2{transform:rotateY(70deg) scale(1.25);border-color:#c4a1ff;animation:sp2 12s linear infinite}
+.r3{transform:rotateX(20deg) rotateY(20deg) scale(.95);border-color:#6d28d9;animation:sp3 7s linear infinite reverse}
+@keyframes sp1{to{transform:rotateX(75deg) scale(1.55) rotateZ(360deg)}}
+@keyframes sp2{to{transform:rotateY(70deg) scale(1.25) rotateZ(-360deg)}}
+@keyframes sp3{to{transform:rotateX(20deg) rotateY(20deg) scale(.95) rotateZ(360deg)}}
+.core{position:absolute;inset:38px;border-radius:24px;background:linear-gradient(135deg,#8B3DFF,#3b0f8c);display:grid;place-items:center;font-size:30px;font-weight:700;color:#fff;box-shadow:0 0 50px rgba(139,61,255,.9);transform:translateZ(0)}
+.hint{position:absolute;bottom:2px;width:100%;text-align:center;font-size:11px;color:var(--mut)}
+.hero h1{font-size:26px;line-height:1.35;margin:4px 0 8px;font-weight:700}.hero h1 em{color:#b98cff;font-style:normal}
+.card,.wk{background:linear-gradient(160deg,rgba(21,22,43,.95),rgba(12,13,28,.95));border:1px solid var(--bd);border-radius:20px;margin:12px 0;box-shadow:0 14px 40px rgba(0,0,0,.45),0 0 0 1px rgba(139,61,255,.06)}
+.tilt{transform-style:preserve-3d;transition:transform .15s ease-out;will-change:transform}
+.card{padding:14px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.st{background:var(--pri2);border:1px solid rgba(139,61,255,.3);border-radius:16px;padding:10px;text-align:center;transform:translateZ(24px)}
+.st b{display:block;font-size:24px;color:#c4a1ff}.st span{font-size:12px;color:var(--mut)}
+.bar{height:10px;background:#1a1b36;border-radius:6px;overflow:hidden;margin-top:10px}.bar i{display:block;height:100%;background:linear-gradient(90deg,#6d28d9,#a78bfa);width:0;transition:width .4s;box-shadow:0 0 12px #8B3DFF}
+h3{margin:0 0 8px;font-size:16px}
 .row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
-input[type=date]{background:var(--card2);color:var(--tx);border:1px solid #3a3352;border-radius:8px;padding:6px 8px;font-size:14px}
-button{background:var(--pri);color:#fff;border:0;border-radius:8px;padding:7px 12px;font-size:14px}
-.bar{height:8px;background:var(--card2);border-radius:6px;overflow:hidden;margin-top:6px}.bar i{display:block;height:100%;background:var(--ok);width:0}
-.wk{background:var(--card);border-radius:14px;margin:10px 0;overflow:hidden}
-.wk>summary{list-style:none;cursor:pointer;padding:12px 14px;display:flex;justify-content:space-between;gap:8px;align-items:center}
-.wk>summary::-webkit-details-marker{display:none}
-.wk .t{font-weight:700}.wk .d{color:var(--mut);font-size:12px}
-.tag{font-size:11px;border-radius:20px;padding:2px 9px;background:var(--card2);color:var(--mut)}
-.tag.rev{background:#3b1d4a;color:#f0abfc}.tag.mid{background:#1e3a5f;color:#93c5fd}.tag.now{background:#14532d;color:#86efac}
-.day{border-top:1px solid #2a2440;padding:10px 14px}
-.day h4{margin:0 0 6px;font-size:14px}.day h4 span{color:var(--mut);font-weight:400;font-size:12px}
-.it{display:flex;gap:9px;align-items:flex-start;padding:5px 0}
-.it input{margin-top:6px;width:18px;height:18px;accent-color:var(--ok)}
-.it label{flex:1;font-size:14px}.it.done label{opacity:.45;text-decoration:line-through}
-.s{display:inline-block;font-size:11px;border-radius:6px;padding:0 7px;margin-inline-end:6px;color:#111;font-weight:700}
-.s.ar{background:var(--ar)}.s.en{background:var(--en)}.s.hi{background:var(--hi)}.s.prog{background:var(--pg)}.s.x{background:#cbd5e1}
-.pg{color:var(--mut);font-size:12px}
-.note{color:var(--mut);font-size:12px}
-.warn{background:#3a2a0b;color:#fcd34d;border-radius:10px;padding:8px 10px;font-size:12px;margin-top:8px}
-.fri{color:var(--mut)}
+input[type=date]{border:1px solid var(--bd);border-radius:10px;padding:7px 9px;font-size:14px;background:#0a0b18;color:var(--tx);color-scheme:dark;font-family:inherit}
+button{background:linear-gradient(135deg,#8B3DFF,#6d28d9);color:#fff;border:0;border-radius:12px;padding:9px 15px;font-size:14px;font-family:inherit;box-shadow:0 6px 18px rgba(139,61,255,.35);transition:transform .1s}
+button:active{transform:scale(.95)}button.g{background:var(--pri2);color:#c4a1ff;box-shadow:none}button.w{background:#3a1d0b;color:#fdba74;box-shadow:none}
+.wk{overflow:hidden}.wk>summary{list-style:none;cursor:pointer;padding:13px 14px;display:flex;justify-content:space-between;gap:8px;align-items:center}
+.wk>summary::-webkit-details-marker{display:none}.wk .t{font-weight:700}.wk .d{color:var(--mut);font-size:12px}
+.tag{font-size:11px;border-radius:20px;padding:2px 10px;background:var(--pri2);color:#c4a1ff}
+.tag.rev{background:rgba(236,72,153,.18);color:#f9a8d4}.tag.mid{background:rgba(56,189,248,.16);color:#7dd3fc}.tag.now{background:rgba(52,211,153,.18);color:#6ee7b7}
+.day{border-top:1px solid var(--bd);padding:10px 14px}.day.today{background:rgba(139,61,255,.1);box-shadow:inset 3px 0 0 var(--pri)}
+.day h4{margin:0 0 4px;font-size:14px}.day h4 span{color:var(--mut);font-weight:400;font-size:12px}.fri{color:var(--mut)}
+.it{display:flex;gap:9px;align-items:flex-start;padding:5px 0}.it input{margin-top:6px;width:19px;height:19px;accent-color:#8B3DFF}
+.it label{flex:1;font-size:14px}.it.done label{opacity:.4;text-decoration:line-through}.it.late label{color:#fca5a5}
+.s{display:inline-block;font-size:11px;border-radius:6px;padding:0 7px;margin-inline-end:6px;color:#fff;font-weight:700}
+.s.ar{background:#b45309}.s.en{background:#0369a1}.s.hi{background:#be185d}.s.prog{background:#047857}.s.x{background:#475569}
+.pgn{color:var(--mut);font-size:12px}.note{color:var(--mut);font-size:12px}
+.warn{background:rgba(251,191,36,.08);color:#fcd34d;border:1px solid rgba(251,191,36,.25);border-radius:12px;padding:9px 11px;font-size:12px;margin-top:10px}
+.timer{font-size:38px;font-weight:700;text-align:center;color:#c4a1ff;letter-spacing:2px;text-shadow:0 0 20px rgba(139,61,255,.8)}
+.rv{display:flex;gap:8px;align-items:center;padding:5px 0;font-size:14px}.rv input{width:19px;height:19px;accent-color:#8B3DFF}
+@media (prefers-reduced-motion:reduce){.ring{animation:none}.tilt{transition:none}}
 </style></head><body>
-<header><h1>جدول المذاكرة - تانية بكالوريا (هندسة وعلوم الحاسب)</h1>
-<div class="sub">المواد المضافة للمجموع: عربي، إنجليزي، تاريخ، برمجة وذكاء اصطناعي (كل مادة من 100)</div></header>
+<div class="top"><div class="logo">VEX</div><div><b>جدولي الدراسي</b><small>تانية بكالوريا · هندسة وعلوم الحاسب</small></div></div>
 <div class="wrap">
-<div class="box">
-<div class="row"><b>ميعاد الامتحان:</b><input type="date" id="exam"><button id="go">حدّث الجدول</button></div>
-<div class="note" style="margin-top:6px">الوزارة حددت شهر مايو للفرصة الأولى لكن مفيش يوم معلن ومصدر واحد قال يونيو. الافتراضي 15 مايو 2027 والجدول بيتعدل أول ما تغيّر التاريخ. آخر 4 أسابيع مراجعة.</div>
+<div class="stage" id="stage"><div class="scene" id="scene"><div class="ring r1"></div><div class="ring r2"></div><div class="ring r3"></div><div class="core" id="core">0%</div></div><div class="hint">اسحب لتدوير المجسم</div></div>
+<div class="hero"><h1>ذاكر بذكاء، <em>وتابع تقدّمك</em> خطوة بخطوة.</h1></div>
+<div class="card tilt"><div class="grid"><div class="st"><b id="sd">0</b><span>خلّصت</span></div><div class="st"><b id="sl">0</b><span>متأخرة</span></div><div class="st"><b id="ss">0</b><span>أيام متتالية</span></div></div>
 <div class="bar"><i id="pb"></i></div><div class="note" id="pt"></div>
-</div>
+<div class="row" style="margin-top:10px"><b>ميعاد الامتحان:</b><input type="date" id="exam"><button id="go">حدّث</button></div>
+<div class="note" style="margin-top:6px">الوزارة حددت شهر مايو للفرصة الأولى ومفيش يوم معلن. الافتراضي 15 مايو 2027 وتقدر تغيّره. آخر 4 أسابيع مراجعة.</div></div>
+<div class="card" id="late" style="display:none"><h3>مهام متأخرة</h3><div class="note" id="lt"></div><div class="row" style="margin-top:8px"><button class="w" id="pp">أجّلها ذكيًا</button><button class="g" id="un" style="display:none">تراجع</button></div></div>
+<div class="card" id="rvc" style="display:none"><h3>مراجعة النهاردة (1/3/7/30 يوم)</h3><div id="rvl"></div></div>
+<div class="card tilt"><h3>تركيز (بومودورو)</h3><div class="timer" id="tm">25:00</div><div class="row" style="justify-content:center;margin-top:8px"><button id="tb">ابدأ 25 دقيقة</button><button class="g" id="tr">إعادة</button></div><div class="note" style="text-align:center" id="tf"></div></div>
 <div id="weeks"></div>
-<div class="warn">مش مضمّن: الثقافة المالية والتربية الدينية والتربية الرياضية (مش بتدخل المجموع، وماوصلتش لمنهجهم). الدروس من فهرس كتب الوزارة كما نقلته مواقع تعليمية، راجعها على الكتاب. تقسيم كتاب القصة (10 أعمال) على الترمين تقدير مني.</div>
+<div class="warn">مش مضمّن: الثقافة المالية والتربية الدينية والتربية الرياضية (مش بتدخل المجموع). عناوين الدروس من فهرس كتب الوزارة كما نقلته مواقع تعليمية، راجعها على كتبك. تقسيم كتاب القصة على الترمين تقدير. بياناتك محفوظة على الموبايل ده بس.</div>
 </div>
 <script>
 const S={ar:["عربي","ar"],en:["إنجليزي","en"],hi:["تاريخ","hi"],pg:["برمجة","prog"]};
@@ -90,34 +111,72 @@ function build(exam){
   if(x.date.getTime()==exam.getTime()){x.items=[{k:"x",t:"يوم الامتحان الأول: راجع ملخصاتك بس وارتاح",p:""}];return}
   const k=rs[ri++%4],k2=rs[ri%4];x.items=last?[{k,t:"مراجعة سريعة: "+S[k][0]+" (الملخصات فقط)",p:""}]:[{k,t:"مراجعة نهائية: "+S[k][0]+" كل المنهج",p:""},{k:k2,t:"امتحان تجريبي/أسئلة: "+S[k2][0],p:""}]});
  return days}
-function dow(d){return (d.getUTCDay()+1)%7} // 0=Sat..6=Fri
+function dow(d){return (d.getUTCDay()+1)%7}
 function fill(ds,q,kind){
  ds.forEach(x=>{x.kind=kind;x.items=[]});
  q.forEach((it,i)=>ds[Math.floor(i*ds.length/q.length)].items.push(it));
  ds.forEach(x=>{if(!x.items.length)x.items=[{k:"x",t:"يوم مراجعة: راجع آخر درسين واحل أسئلة عليهم",p:""}]});
 }
+
+const iso=d=>d.toISOString().slice(0,10);
+const J=k=>JSON.parse(localStorage.getItem(k)||"{}");const W=(k,v)=>localStorage.setItem(k,JSON.stringify(v));
+function todayD(){const t=new Date();return D(t.getFullYear(),t.getMonth()+1,t.getDate())}
+let lastMoves=null;
 function render(){
  const exam=new Date(document.getElementById("exam").value+"T12:00:00Z");
- const days=build(exam);
- // add Fridays
+ let days=build(exam);
  days.forEach(x=>{if(dow(x.date)==6&&!x.items.length){x.kind=x.kind||"fri";x.items=[{k:"x",t:"مراجعة أسبوعية: اللي ذاكرته الأسبوع ده + المتأخر",p:"يوم خفيف"}]}});
- const st=JSON.parse(localStorage.getItem("bacdone")||"{}");
- let html="",total=0,done=0,wi=0,today=new Date();today=D(today.getFullYear(),today.getMonth()+1,today.getDate());
+ days.forEach(x=>x.items.forEach((it,j)=>{it.id=iso(x.date)+"|"+j+"|"+it.t;it.orig=iso(x.date)}));
+ const mv=J("bacmoves"),st=J("bacdone"),td=todayD(),tdi=iso(td);
+ const byDate={};days.forEach(x=>byDate[iso(x.date)]=x);
+ // apply moves
+ Object.entries(mv).forEach(([id,to])=>{const f=byDate[id.split("|")[0]],t=byDate[to];if(!f||!t)return;const i=f.items.findIndex(z=>z.id==id);if(i<0)return;const it=f.items.splice(i,1)[0];it.moved=true;t.items.push(it)});
+ let total=0,done=0,late=[];
+ days.forEach(x=>x.items.forEach(it=>{if(it.k=="x"&&/مراجعة أسبوعية|راحة|يوم مراجعة/.test(it.t))return;total++;if(st[it.id])done++;else if(x.date<td)late.push({it,x})}));
+ // streak
+ const dset=new Set(Object.values(st));let sk=0;for(let d=td;;d=add_(d,-1)){if(dset.has(iso(d)))sk++;else if(iso(d)==tdi){}else break;if(sk>400)break}
+ document.getElementById("sd").textContent=done;document.getElementById("sl").textContent=late.length;document.getElementById("ss").textContent=sk;
+ document.getElementById("pb").style.width=(total?done/total*100:0)+"%";document.getElementById("core").textContent=(total?Math.round(done/total*100):0)+"%";
+ document.getElementById("pt").textContent=`${done} من ${total} مهمة · ${Math.ceil(days.length/7)} أسبوع لحد الامتحان`;
+ // late card
+ const lc=document.getElementById("late");lc.style.display=late.length?"block":"none";document.getElementById("lt").textContent=late.length+" مهمة فاتت. هنوزّعها على أقل الأيام زحمة قبل المراجعة النهائية.";
+ document.getElementById("un").style.display=lastMoves?"inline-block":"none";
+ document.getElementById("pp").onclick=()=>{const revStart=add_(exam,-28),cand=days.filter(x=>x.date>=td&&x.date<revStart&&dow(x.date)!=6&&x.kind!="gap");if(!cand.length)return;const nm=J("bacmoves");lastMoves=JSON.parse(JSON.stringify(nm));late.forEach(({it})=>{cand.sort((a,b)=>a.items.length-b.items.length||a.date-b.date);const t=cand[0];t.items.push({});nm[it.id]=iso(t.date)});W("bacmoves",nm);render()};
+ document.getElementById("un").onclick=()=>{W("bacmoves",lastMoves||{});lastMoves=null;render()};
+ // reviews due today
+ const rvd=J("bacrev"),due=[];
+ Object.entries(st).forEach(([id,dd])=>{[1,3,7,30].forEach(n=>{const k=id+"#"+n;if(iso(add_(new Date(dd+"T12:00:00Z"),n))==tdi&&!rvd[k])due.push({k,t:id.split("|")[2],n})})});
+ const rc=document.getElementById("rvc");rc.style.display=due.length?"block":"none";
+ document.getElementById("rvl").innerHTML=due.map(r=>`<div class="rv"><input type="checkbox" data-rk="${r.k.replace(/"/g,"&quot;")}"><span>راجع: ${r.t} <span class="pgn">(بعد ${r.n} يوم)</span></span></div>`).join("");
+ document.querySelectorAll("[data-rk]").forEach(c=>c.onchange=()=>{const r=J("bacrev");r[c.dataset.rk]=1;W("bacrev",r);render()});
+ // weeks
+ let html="",wi=0;
  for(let i=0;i<days.length;i+=7){
   const wk=days.slice(i,i+7);wi++;const f=wk[0].date,l=wk[wk.length-1].date;
   const kind=wk.some(x=>x.kind=="rev")?"rev":wk.some(x=>x.kind=="gap")?"mid":"";
   const lab=kind=="rev"?"مراجعة نهائية":kind=="mid"?"مراجعة منتصف السنة":"أسبوع دراسة";
-  const isNow=today>=f&&today<=add_(l,1);
-  let body="",wd=0,wt=0;
-  wk.forEach(x=>{let its="";x.items.forEach((it,j)=>{const id=fmt(x.date)+"|"+j+"|"+it.t;total++;wt++;const c=st[id];if(c){done++;wd++}
-   its+=`<div class="it ${c?"done":""}"><input type="checkbox" data-id="${id.replace(/"/g,"&quot;")}" ${c?"checked":""}><label><span class="s ${it.k=="x"?"x":S[it.k][1]}">${it.k=="x"?"عام":S[it.k][0]}</span>${it.t} <span class="pg">${it.p}</span></label></div>`});
-   body+=`<div class="day"><h4 class="${dow(x.date)==6?"fri":""}">${DN[dow(x.date)]} <span>${fmt(x.date)}</span></h4>${its}</div>`});
+  const isNow=td>=f&&td<=add_(l,1);let body="",wd=0,wt=0;
+  wk.forEach(x=>{if(!x.items.length)x.items=[];let its="";x.items.filter(it=>it.t).forEach(it=>{wt++;const c=st[it.id];if(c)wd++;const isLate=!c&&x.date<td;
+   its+=`<div class="it ${c?"done":""} ${isLate?"late":""}"><input type="checkbox" data-id="${it.id.replace(/"/g,"&quot;")}" ${c?"checked":""}><label><span class="s ${it.k=="x"?"x":S[it.k][1]}">${it.k=="x"?"عام":S[it.k][0]}</span>${it.t} <span class="pgn">${it.p||""}${it.moved?" · متأجل":""}</span></label></div>`});
+   body+=`<div class="day ${iso(x.date)==tdi?"today":""}"><h4 class="${dow(x.date)==6?"fri":""}">${DN[dow(x.date)]} <span>${fmt(x.date)}${iso(x.date)==tdi?" · النهاردة":""}</span></h4>${its}</div>`});
   html+=`<details class="wk" ${isNow?"open":""}><summary><div><div class="t">الأسبوع ${wi}</div><div class="d">${fmt(f)} - ${fmt(l)} · ${wd}/${wt}</div></div><div>${isNow?'<span class="tag now">الأسبوع ده</span> ':""}<span class="tag ${kind}">${lab}</span></div></summary>${body}</details>`}
  document.getElementById("weeks").innerHTML=html;
- document.getElementById("pb").style.width=(total?done/total*100:0)+"%";
- document.getElementById("pt").textContent=`خلّصت ${done} من ${total} مهمة · ${wi} أسبوع لحد الامتحان`;
- document.querySelectorAll(".it input").forEach(c=>c.onchange=()=>{const s=JSON.parse(localStorage.getItem("bacdone")||"{}");if(c.checked)s[c.dataset.id]=1;else delete s[c.dataset.id];localStorage.setItem("bacdone",JSON.stringify(s));render()})}
+ document.querySelectorAll(".it input").forEach(c=>c.onchange=()=>{const s=J("bacdone");if(c.checked)s[c.dataset.id]=tdi;else delete s[c.dataset.id];W("bacdone",s);render()})}
+// pomodoro
+let tmv=null,left=1500;const fm=()=>{document.getElementById("tm").textContent=String(Math.floor(left/60)).padStart(2,"0")+":"+String(left%60).padStart(2,"0")};
+function foc(){const f=J("bacfocus");document.getElementById("tf").textContent="تركيز النهاردة: "+(f[iso(todayD())]||0)+" دقيقة"}
+document.getElementById("tb").onclick=()=>{if(tmv){clearInterval(tmv);tmv=null;document.getElementById("tb").textContent="كمّل";return}document.getElementById("tb").textContent="إيقاف مؤقت";tmv=setInterval(()=>{left--;fm();if(left<=0){clearInterval(tmv);tmv=null;const f=J("bacfocus");f[iso(todayD())]=(f[iso(todayD())]||0)+25;W("bacfocus",f);left=1500;fm();foc();document.getElementById("tb").textContent="ابدأ 25 دقيقة";if(navigator.vibrate)navigator.vibrate(400)}},1000)};
+document.getElementById("tr").onclick=()=>{clearInterval(tmv);tmv=null;left=1500;fm();document.getElementById("tb").textContent="ابدأ 25 دقيقة"};
 const ex=document.getElementById("exam");ex.value=localStorage.getItem("bacexam")||"2027-05-15";
 document.getElementById("go").onclick=()=>{localStorage.setItem("bacexam",ex.value);render()};
-render();
+
+// 3D drag + tilt
+(function(){const sc=document.getElementById("scene"),st=document.getElementById("stage");let ry=0,rx=-18,drag=false,lx=0,ly=0,auto=true;
+const ap=()=>sc.style.transform=`rotateX(${rx}deg) rotateY(${ry}deg)`;
+st.addEventListener("pointerdown",e=>{drag=true;auto=false;lx=e.clientX;ly=e.clientY;st.style.cursor="grabbing";st.setPointerCapture(e.pointerId)});
+st.addEventListener("pointermove",e=>{if(!drag)return;ry+=(e.clientX-lx)*.6;rx=Math.max(-70,Math.min(70,rx-(e.clientY-ly)*.5));lx=e.clientX;ly=e.clientY;ap()});
+const up=()=>{drag=false;st.style.cursor="grab";setTimeout(()=>auto=true,2500)};st.addEventListener("pointerup",up);st.addEventListener("pointercancel",up);
+if(!matchMedia("(prefers-reduced-motion:reduce)").matches)setInterval(()=>{if(auto){ry+=.4;ap()}},30);
+document.querySelectorAll(".tilt").forEach(c=>{c.addEventListener("pointermove",e=>{if(e.pointerType=="touch"&&e.buttons==0)return;const r=c.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;c.style.transform=`perspective(800px) rotateY(${x*10}deg) rotateX(${-y*10}deg)`});["pointerleave","pointerup"].forEach(ev=>c.addEventListener(ev,()=>c.style.transform=""))})})();
+render();foc();
 </script></body></html>
