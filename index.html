@@ -80,7 +80,7 @@ body{padding-bottom:78px}
 </style></head><body>
 <div class="auth" id="auth"><div class="box"><div id="authbox"><h1 style="text-align:center">جدولك</h1><p class="note" style="text-align:center">خطة المذاكرة بتاعتك للثانوية</p><p class="note" style="text-align:center">حساب محلي على جهازك. بياناتك محفوظة في المتصفح بس.</p><div class="chips" id="authseg"><button data-m="login" class="on">دخول</button><button data-m="signup">حساب جديد</button></div><input type="text" id="un" placeholder="اسم المستخدم" autocomplete="username"><input type="password" id="pw" placeholder="كلمة السر" autocomplete="current-password"><div id="err" style="color:#f87171;min-height:22px"></div><button id="authgo" style="width:100%">دخول</button></div>
 <div id="prof" style="display:none"></div>
-<div id="onb" style="display:none"><h2>أهلاً! اضبط خطتك</h2><b>يوم الراحة بتاعك إيه؟</b><div class="chips" id="days7" style="flex-wrap:wrap"></div><b>اليوم ده يبقى إيه؟</b><div class="chips" id="omode"></div><b>ميعاد أول امتحان (تقدر تغيره)</b><input type="date" id="exd"><p class="note">الوزارة لسه معلنتش اليوم بالظبط (مايو). الافتراضي 15 مايو 2027.</p><button id="onbgo" style="width:100%">ابدأ الخطة</button></div></div></div>
+<div id="onb" style="display:none"><h2>أهلاً! اضبط خطتك</h2><b>يوم الراحة بتاعك إيه؟</b><div class="chips" id="days7" style="flex-wrap:wrap"></div><b>اليوم ده يبقى إيه؟</b><div class="chips" id="omode"></div><b>وصلت لفين في المنهج؟</b><div class="chips" id="pmode"></div><div id="pextra"></div><b>ميعاد أول امتحان (تقدر تغيره)</b><input type="date" id="exd"><p class="note">الوزارة لسه معلنتش اليوم بالظبط (مايو). الافتراضي 15 مايو 2027.</p><button id="onbgo" style="width:100%">ابدأ الخطة</button></div></div></div>
 <div class="top"><div><b id="who"></b></div><div style="margin-inline-start:auto;display:flex;gap:6px"><button class="g" id="setb">⚙︎</button><button class="g" id="lo">خروج</button></div></div>
 <div class="view on" id="v-home"><div class="stage" id="stage"><div class="scene" id="scene"><div class="ring"></div><div class="ring" style="transform:rotateX(70deg)"></div><div class="ring" style="transform:rotateY(70deg)"></div><div class="core" id="core"></div></div></div><div id="hm"></div>
 <div class="card"><h3>بومودورو</h3><div style="font-size:38px;text-align:center" id="tm">25:00</div><div class="row" style="justify-content:center"><button id="tb">ابدأ</button><button class="g" id="tr">إعادة</button><button class="g" id="tf">استراحة</button></div></div></div>
@@ -90,7 +90,7 @@ body{padding-bottom:78px}
 <div class="view" id="v-cards"><div id="cl"></div></div>
 <div class="view" id="v-az"><div id="azt"></div><div id="azl"></div><div id="azs"></div></div>
 <div class="rate" id="rate"><div class="bx"><div class="note">خلّصت:</div><h3 id="rt"></h3><b>كان صعب ولا سهل؟</b><div><button data-lv="hard" class="w" style="background:#3b2a6b">صعب</button><button data-lv="mid">متوسط</button><button data-lv="easy" class="g">سهل</button></div><button class="g" data-lv="skip">تخطي</button></div></div>
-<div class="set" id="set"><div class="in"><h2>الإعدادات</h2><b>ميعاد الامتحان</b><input type="date" id="sex"><button id="sexg">حفظ</button><p><b>يوم الراحة</b></p><div class="chips" id="sdays" style="flex-wrap:wrap"></div><b>يوم الراحة يبقى</b><div class="chips" id="somode"></div><button class="g" id="sprof" style="width:100%;margin-bottom:8px">غيّر السنة / النظام / المسار</button><button class="g" id="sclose" style="width:100%">إغلاق</button></div></div>
+<div class="set" id="set"><div class="in"><h2>الإعدادات</h2><b>ميعاد الامتحان</b><input type="date" id="sex"><button id="sexg">حفظ</button><p><b>يوم الراحة</b></p><div class="chips" id="sdays" style="flex-wrap:wrap"></div><b>يوم الراحة يبقى</b><div class="chips" id="somode"></div><b>ظبط تقدمك</b><div class="row"><input type="number" id="swk" min="0" max="40" placeholder="خلّصت لحد أسبوع رقم" style="flex:1"><button id="swkg">طبّق</button></div><div class="note" id="swkn">بيعتبر كل دروس الأسابيع لحد الرقم ده خلصانة.</div><button class="g" id="sprof" style="width:100%;margin-bottom:8px">غيّر السنة / النظام / المسار</button><button class="g" id="sclose" style="width:100%">إغلاق</button></div></div>
 <nav class="nav"><button data-v="home" class="on"><svg viewBox="0 0 24 24"><path d="M3 11l9-8 9 8v10H3z"/></svg>الرئيسية</button><button data-v="sched"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>الجدول</button><button data-v="back"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>متراكم <span id="bdg" style="display:none;background:#8B3DFF;color:#fff;border-radius:9px;padding:0 6px;font-size:10px"></span></button><button data-v="cards"><svg viewBox="0 0 24 24"><rect x="3" y="6" width="14" height="14" rx="2"/><path d="M7 3h14v14"/></svg>كروت</button><button data-v="stats"><svg viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-8M22 20H2"/></svg>إحصاء</button><button data-v="az"><svg viewBox="0 0 24 24"><path d="M12 3a6 6 0 016 6c0 4-6 12-6 12S6 13 6 9a6 6 0 016-6z"/></svg>أذكار</button></nav>
 <script>
 const S={ar:["عربي","ar"],en:["إنجليزي","en"],hi:["تاريخ","hi"],pg:["برمجة","prog"]};
@@ -153,9 +153,9 @@ async function authGo(){
  }}
 let offSel=6,omSel="empty";
 function drawOm(id){$(id).innerHTML=[["empty","فاضي تمامًا"],["one","مهمة صغيرة واحدة"],["rev","يوم مراجعة"]].map(([v,t])=>`<button data-om="${v}" class="${v==(id=="omode"?omSel:(U.offmode||"empty"))?"on":""}">${t}</button>`).join("");document.querySelectorAll("#"+id+" button").forEach(b=>b.onclick=()=>{if(id=="omode"){omSel=b.dataset.om;drawOm(id)}else{U.offmode=b.dataset.om;saveU();renderAll();drawOm(id)}})}
-function showOnboard(){$("authbox").style.display="none";$("onb").style.display="block";offSel=6;omSel="empty";drawDays();drawOm("omode");$("exd").value=U.exam}
+function showOnboard(){pmSel="sync";drawPm();$("authbox").style.display="none";$("onb").style.display="block";offSel=6;omSel="empty";drawDays();drawOm("omode");$("exd").value=U.exam}
 function drawDays(){$("days7").innerHTML=DN.map((d,i)=>`<button data-d="${i}" class="${i==offSel?"on":""}">${d}</button>`).join("");document.querySelectorAll("#days7 button").forEach(b=>b.onclick=()=>{offSel=+b.dataset.d;drawDays()})}
-function onbGo(){U.dayoff=offSel;U.offmode=omSel;U.exam=$("exd").value||"2027-05-15";U.start=iso(PLAN0);saveU();enter()}
+function onbGo(){U.dayoff=offSel;U.offmode=omSel;U.exam=$("exd").value||"2027-05-15";U.start=iso(PLAN0);saveU();applyProgress();enter()}
 function enter(){$("auth").classList.remove("on");$("who").textContent=U.name;go(localStorage.getItem("bac_view")||"home");renderAll()}
 function logout(){saveU();localStorage.removeItem("bac_session");U=null;$("auth").classList.add("on");$("authbox").style.display="block";$("onb").style.display="none";$("un").value="";$("pw").value=""}
 /* ---------- plan ---------- */
@@ -188,7 +188,7 @@ function build(){
 function stats(P){
  const td=todayD(),tdi=iso(td);let total=0,done=0,late=[],per={};
  P.days.forEach(x=>x.items.forEach(it=>{total++;const d=!!U.done[it.id];if(d)done++;const s=per[it.k]=per[it.k]||{t:0,d:0};s.t++;if(d)s.d++;if(!d&&x.date<td&&it.core)late.push({it,x})}));
- const ds=new Set(Object.values(U.done));let sk=0,d=td;if(!ds.has(iso(d)))d=add_(d,-1);while(ds.has(iso(d))){sk++;d=add_(d,-1);if(sk>800)break}
+ const ds=new Set(Object.values(U.done).filter(v=>v!="2000-01-01"));let sk=0,d=td;if(!ds.has(iso(d)))d=add_(d,-1);while(ds.has(iso(d))){sk++;d=add_(d,-1);if(sk>800)break}
  let best=0,run=0;[...ds].sort().forEach((s,i,a)=>{run=(i&&iso(add_(pd(a[i-1]),1))==s)?run+1:1;if(run>best)best=run});
  // week index
  const wi=Math.floor((td-P.start)/864e5/7),wn=Math.ceil(P.days.length/7);
@@ -338,7 +338,21 @@ function drawProf(){let h="<h2>أنت سنة كام؟</h2><div class='chips' sty
 function notReady(){ST={tdi:iso(todayD()),td:todayD(),late:[],wi:0,wn:0};P=null;const lbl=`${YR[U.year]} · ${SYS[U.sys]}${U.sys=="bac"&&U.track&&U.track!="none"?" · "+TRK[U.track]+(U.elective?" · "+(ELEC[U.track]&&ELEC[U.track].find(x=>x[0]==U.elective)?ELEC[U.track].find(x=>x[0]==U.elective)[1]:U.elective):""):""}`;
  const m=`<div class="card"><h3>المنهج لسه محمّلش</h3><div class="note">اخترت: ${esc(lbl)}. جدول المنهج ده لسه بيتجمّع وبيتراجع، ومش هعرض لك خطة تخمين. الجاهز دلوقتي: تانية ثانوي بكالوريا مسار الهندسة وعلوم الحاسب (برمجة). تقدر تغيّر اختيارك من الإعدادات.</div></div>`;
  ["hm","weeks","cu","blist","stl","cl"].forEach(i=>$(i).innerHTML=m);$("bchips").innerHTML="";$("bsum").textContent="";$("ball").style.display="none";$("bun").style.display="none";$("core").textContent="—";$("bdg").style.display="none";rAz()}
+
+/* progress ("how far did you get") */
+let pmSel="sync",pmWk=0,pmSub={};
+function drawPm(){$("pmode").innerHTML=[["sync","ماشي مع الجدول (اللي قبل النهاردة خلص)"],["week","وصلت لأسبوع معين"],["sub","وصلت لدرس معين في كل مادة"],["none","لسه ببدأ (متراكم كامل)"]].map(([v,t])=>`<button data-pm="${v}" class="${pmSel==v?"on":""}">${t}</button>`).join("");
+ let h="";if(pmSel=="week")h='<input type="number" id="pmw" min="1" max="40" placeholder="خلّصت لحد أسبوع رقم (1 = أسبوع 12 سبتمبر)" value="'+(pmWk||"")+'">';
+ if(pmSel=="sub"){h=["ar","en","hi","pg"].map(k=>`<div class="note">${SUBJ[k][0]}: آخر درس خلصته</div><select data-sk="${k}" style="width:100%;margin:4px 0;border:1px solid var(--bd);border-radius:12px;padding:10px;background:#0a0b18;color:var(--tx);font-family:inherit"><option value="-1">ولا درس</option>${T1.concat(T2).filter(x=>x.k==k).map((x,i)=>`<option value="${i}" ${pmSub[k]==i?"selected":""}>${esc(x.t.slice(0,60))}</option>`).join("")}</select>`).join("")}
+ $("pextra").innerHTML=h;document.querySelectorAll("#pmode [data-pm]").forEach(b=>b.onclick=()=>{pmSel=b.dataset.pm;drawPm()})}
+const PRE="2000-01-01";
+function applyProgress(){if(!ready())return;P=build();const done=U.done;
+ if(pmSel=="sync"){P.days.forEach(x=>{if(x.date<todayD())x.items.forEach(it=>{if(it.core&&!it.moved)done[it.id]=PRE})})}
+ else if(pmSel=="week"){const n=+(($("pmw")||{}).value||pmWk||0);if(n>0){const cut=add_(PLAN0,7*n);P.days.forEach(x=>{if(x.date<cut)x.items.forEach(it=>{if(it.core)done[it.id]=PRE})})}}
+ else if(pmSel=="sub"){document.querySelectorAll("#pextra [data-sk]").forEach(s=>{const k=s.dataset.sk,idx=+s.value;T1.concat(T2).filter(x=>x.k==k).forEach((x,i)=>{if(i<=idx)done[k+"|"+x.t]=PRE})})}
+ saveU()}
 /* settings */
+$("swkg").onclick=()=>{if(!ready())return;const n=+$("swk").value;if(!(n>0))return;P=build();const cut=add_(PLAN0,7*n);P.days.forEach(x=>{if(x.date<cut)x.items.forEach(it=>{if(it.core&&!U.done[it.id])U.done[it.id]=PRE})});saveU();renderAll();$("swkn").textContent="تمام. اتعلّم خلصان لحد نهاية الأسبوع "+n+"."};
 $("sprof").onclick=()=>{$("set").classList.remove("on");showProfile()};
 function openSet(){$("set").classList.add("on");drawOm("somode");$("sex").value=U.exam;$("sdays").innerHTML=DN.map((d,i)=>`<button data-d="${i}" class="${i==U.dayoff?"on":""}">${d}</button>`).join("");document.querySelectorAll("#sdays button").forEach(b=>b.onclick=()=>{U.dayoff=+b.dataset.d;saveU();openSet();renderAll()})}
 /* pomodoro */
